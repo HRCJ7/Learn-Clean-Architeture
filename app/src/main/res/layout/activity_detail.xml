@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:fitsSystemWindows="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/mainAppbar"
+            android:fitsSystemWindows="true"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_height"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/mainCollapsing"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:contentScrim="?attr/colorPrimary">
+            <ImageView
+                    android:id="@+id/mainBackdrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:fitsSystemWindows="true"
+                    android:transitionName="poster"
+                    app:layout_collapseMode="parallax"/>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/text_protection_scrim_height"
+                    android:layout_gravity="bottom"
+                    android:layout_alignBottom="@+id/mainBackdrop"/>
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/mainToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:layout_collapseMode="pin"
+            />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/activity_horizontal_margin"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <GridLayout
+                android:layout_width="match_parent"
+                android:useDefaultMargins="true"
+                android:layout_height="match_parent"
+                android:columnCount="2">
+            <TextView
+                    android:layout_column="0"
+                    android:layout_row="0"
+                    style="@style/left_column_bold"
+                    android:text="@string/title"/>
+            <TextView
+                    android:layout_column="1"
+                    android:layout_row="0"
+                    style="@style/right_column_normal"
+                    tools:text="Thor"
+                    android:id="@+id/gridTitle"/>
+
+            <TextView
+                    style="@style/left_column_bold"
+                    android:layout_column="0"
+                    android:layout_row="1"
+                    android:text="@string/released"/>
+            <TextView
+                    style="@style/right_column_normal"
+                    android:layout_column="1"
+                    android:layout_row="1"
+                    tools:text="@string/example_release"
+                    android:id="@+id/year"/>
+
+            <TextView
+                    style="@style/left_column_bold"
+                    android:text="@string/runtime"
+                    android:layout_column="0"
+                    android:layout_row="2"/>
+
+            <TextView
+                    style="@style/right_column_normal"
+                    tools:text="101 minutes"
+                    android:layout_column="1"
+                    android:layout_row="2"
+                    android:id="@+id/runtime"/>
+
+            <TextView
+                    android:text="@string/director"
+                    android:layout_column="0"
+                    android:layout_row="3"
+                    style="@style/left_column_bold"/>
+            <TextView
+                    style="@style/right_column_normal"
+                    tools:text="Director"
+                    android:layout_column="1"
+                    android:layout_row="3"
+                    android:id="@+id/director"/>
+            <TextView
+                    style="@style/left_column_bold"
+                    android:layout_column="0"
+                    android:layout_row="4"
+                    android:text="@string/Genre"/>
+            <TextView
+                    style="@style/right_column_normal"
+                    android:layout_column="1"
+                    android:layout_row="4"
+                    tools:text="Animation"
+                    android:id="@+id/genre"/>
+
+            <TextView
+                    style="@style/left_column_bold"
+                    android:text="@string/actors"
+                    android:layout_column="0"
+                    android:layout_row="6"/>
+            <TextView
+                    style="@style/right_column_normal"
+                    android:layout_column="1"
+                    android:layout_row="6"
+                    tools:text="Actors"
+                    android:id="@+id/actors"/>
+            <TextView
+                    android:layout_column="0"
+                    android:layout_row="7"
+                    style="@style/left_column_bold"
+                    android:text="@string/plot"/>
+            <TextView
+                    android:layout_column="1"
+                    android:layout_row="7"
+                    tools:text="Plot"
+                    style="@style/right_column_normal"
+                    android:id="@+id/plot"/>
+
+            <TextView
+                    android:layout_column="0"
+                    android:layout_row="8"
+                    style="@style/left_column_bold"
+                    android:text="@string/rating"/>
+            <TextView
+                    android:layout_column="1"
+                    android:layout_row="8"
+                    tools:text="Rating"
+                    style="@style/right_column_normal"
+                    android:id="@+id/rating"/>
+        </GridLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

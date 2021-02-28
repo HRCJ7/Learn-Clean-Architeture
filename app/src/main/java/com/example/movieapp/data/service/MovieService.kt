@@ -1,0 +1,52 @@
+package com.example.movieapp.data.service
+
+import android.util.Log
+import com.example.movieapp.data.model.MainObject
+import com.example.movieapp.data.model.MovieDetail
+import okhttp3.OkHttpClient
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
+import retrofit2.http.Query
+
+interface MovieService {
+
+    @GET("?type=movie")
+    suspend fun getMovies(@Query("s") title: String): Response<MainObject>
+
+    @GET("?plot=full")
+    suspend fun getMovieDetail(@Query("i") imdb: String): Response<MovieDetail>
+
+    companion object {
+        fun create(): MovieService {
+            val retrofitBuilder = Retrofit.Builder()
+            retrofitBuilder.apply {
+                baseUrl("http://www.omdbapi.com")
+                client(getHttpClient())
+                addConverterFactory(GsonConverterFactory.create())
+            }
+            return retrofitBuilder.build().create(MovieService::class.java)
+        }
+
+
+        private fun getHttpClient(): OkHttpClient {
+            val httpClient = OkHttpClient.Builder()
+            httpClient.addInterceptor { chain ->
+                val original = chain.request()
+                val originalHttpUrl = original.url()
+                val url = originalHttpUrl.newBuilder()
+                    .addQueryParameter("apikey", "b9bd48a6")
+                    .build()
+
+                val requestBuilder = original.newBuilder()
+                    .url(url)
+                Log.d("URL", url.toString())
+                val request = requestBuilder.build()
+                chain.proceed(request)
+            }
+            return httpClient.build()
+        }
+
+    }
+}
